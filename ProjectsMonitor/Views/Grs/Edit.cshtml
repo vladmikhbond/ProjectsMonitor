@@ -18,7 +18,7 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+    @*        <div class="form-group">
                 <label asp-for="TutorName" class="control-label"></label>
                 <input asp-for="TutorName" class="form-control" />
                 <span asp-validation-for="TutorName" class="text-danger"></span>
@@ -28,7 +28,7 @@
                 <input asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+*@            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -39,6 +39,7 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+*@

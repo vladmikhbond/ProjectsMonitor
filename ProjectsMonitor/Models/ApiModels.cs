@@ -1,6 +1,8 @@
-﻿namespace ProjectsMonitor.Models
+﻿// Типы для разбора json, получаемого от github api
+// 
+namespace ProjectsMonitor.Models
 {
-    public class Node
+    public class CommitNode
     {
         public Commit commit { get; set; }
         public DateTime date => commit.committer.date;

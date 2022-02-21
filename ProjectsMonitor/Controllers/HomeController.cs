@@ -43,7 +43,7 @@ namespace ProjectsMonitor.Controllers
                 try
                 {
                     var uri = GetCommitsUri(student.Repo);
-                    modelItem.Commits = (await RequestData<List<Node>>(client, uri))
+                    modelItem.Commits = (await RequestData<List<CommitNode>>(client, uri))
                         .GroupBy(n => n.commit.committer.date.Date)
                         .Select(g => new { Date = g.Key, Number = g.Count() })
                         .ToDictionary(x => x.Date, x => x.Number);
@@ -59,8 +59,12 @@ namespace ProjectsMonitor.Controllers
 
             // min & max date
             var dates = dashes.SelectMany(d => d.Commits.Keys).Distinct().ToList();
-            ViewBag.StartDate = dates.Min();
-            ViewBag.DatesCount = (dates.Max() - dates.Min()).Days + 1;           
+            if (dates.Count == 0)
+            {
+                return Content($"No commits at all in {gr.Name}.");
+            }
+            ViewBag.StartDate = dates.Min().Date;
+            ViewBag.DatesCount = (dates.Max().Date - dates.Min().Date).Days + 1;           
             //ViewBag.StartDate = gr.StartDate.Date;
 
             return View(dashes);

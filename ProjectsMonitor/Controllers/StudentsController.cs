@@ -25,8 +25,8 @@ namespace ProjectsMonitor.Controllers
         public async Task<IActionResult> Index()
         {
             var grIds = _context.Grs.Where(g => g.TutorName == User.Identity.Name).Select(g => g.Id).ToArray();
-            var applicationDbContext = _context.Students.Include(s => s.Gr).Where(s => grIds.Contains(s.GrId));
-            return View(await applicationDbContext.ToListAsync());
+            var students = _context.Students.Include(s => s.Gr).Where(s => grIds.Contains(s.GrId));
+            return View(await students.ToListAsync());
         }
 
         // GET: Students/Details/5
