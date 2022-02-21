@@ -1,0 +1,44 @@
+﻿@model List<DashViewModel>
+
+@{
+    ViewData["Title"] = "DashBoard";
+}
+
+<h1>DashBoard</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Student
+            </th>
+              @for (int i = 0; i < ViewBag.DatesCount; i++) {
+                var date = ViewBag.StartDate + TimeSpan.FromDays(i);
+                <th title="@date.ToShortDateString()">
+                   @i
+                </th>
+             }
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var dash in Model) {
+        <tr>
+            <td>
+                <a href="@dash.Student.Repo">@dash.Student.Name</a>  
+            </td>
+            @for (int i = 0; i < ViewBag.DatesCount; i++) {
+                var date = ViewBag.StartDate + TimeSpan.FromDays(i);
+                int count = dash.Commits.ContainsKey(date) ? dash.Commits[date] : 0;
+                string mark = count > 0 ? count.ToString() : "";
+                string color = count == 0 ? "none" : (count == 1 ? "lightgreen" : "green") ;
+                <td style="background-color:@color">
+                    @mark
+                </td>
+             }
+        </tr>
+    }
+    </tbody>
+</table>

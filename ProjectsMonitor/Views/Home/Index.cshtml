@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ProjectsMonitor.Models.Gr>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<ol>
+    @foreach (var item in Model)
+    {
+        <li><a asp-action="DashBoard" asp-route-id="@item.Id">@item.Name</a></li>
+    }
+</ol>
+
+@section Scripts {
+    <script>
+        fetch("https://api.github.com/repos/vladmikhbond/Digits/commits")
+           .then(resp => resp.json())
+           .then(console.log)
+
+
+    </script>
+}
