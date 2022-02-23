@@ -4,19 +4,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<ol>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="ClearHash" asp-route-id="commits">Clear Hash</a>
+</p>
+
+<hr />
+
+<ul>
     @foreach (var item in Model)
     {
-        <li><a asp-action="DashBoard" asp-route-id="@item.Id">@item.Name</a></li>
+        <li>
+            <a asp-action="DashBoard" asp-route-id="@item.Id">@item.Name</a>
+        </li>
     }
-</ol>
+</ul>
 
 @section Scripts {
     <script>
         fetch("https://api.github.com/repos/vladmikhbond/Digits/commits")
            .then(resp => resp.json())
            .then(console.log)
-
-
     </script>
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectsMonitor.Data;
 
@@ -11,9 +12,10 @@ using ProjectsMonitor.Data;
 namespace ProjectsMonitor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220223110157_hash4")]
+    partial class hash4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,16 +246,13 @@ namespace ProjectsMonitor.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Grs", (string)null);
+                    b.ToTable("Grs");
                 });
 
             modelBuilder.Entity("ProjectsMonitor.Models.Hash", b =>
                 {
-                    b.Property<int>("GrId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GrId"), 1L, 1);
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<byte[]>("Blob")
                         .HasColumnType("varbinary(max)");
@@ -261,9 +260,9 @@ namespace ProjectsMonitor.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("GrId");
+                    b.HasKey("UserName");
 
-                    b.ToTable("Hashs", (string)null);
+                    b.ToTable("Hashs");
                 });
 
             modelBuilder.Entity("ProjectsMonitor.Models.Student", b =>
@@ -288,7 +287,7 @@ namespace ProjectsMonitor.Migrations
 
                     b.HasIndex("GrId");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -10,12 +10,6 @@ namespace ProjectsMonitor.Data
         public DbSet<Gr> Grs { get; set; }
         public DbSet<Hash> Hashs { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Hash>()
-                .HasKey(e => new { e.Tag, e.UserName });
-            base.OnModelCreating(modelBuilder);
-        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
