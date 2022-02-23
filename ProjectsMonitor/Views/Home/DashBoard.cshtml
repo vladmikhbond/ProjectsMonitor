@@ -12,11 +12,11 @@
             <th>
                 Student
             </th>
-              @for (int i = 0; i < ViewBag.DatesCount; i++) {
-                var date = ViewBag.StartDate + TimeSpan.FromDays(i);
-                <th title="@date.ToShortDateString()">
-                   @(i+1)
-                </th>
+              @for (int i = 1; i <= ViewBag.DatesCount; i++) {
+                 var date = ViewBag.StartDate + TimeSpan.FromDays(i-1);
+                 <th title="@date.ToShortDateString()">
+                    @(i % 10 == 0 ? i : i % 10)
+                 </th>
              }
         </tr>
     </thead>
@@ -24,7 +24,7 @@
     @foreach (var dash in Model) {
         <tr>
             <td>
-                <a href="@dash.Student.Repo">@dash.Student.Name</a>  
+                <a href="@dash.StudentRepo">@dash.StudentName</a>  
             </td>
             @for (int i = 0; i < ViewBag.DatesCount; i++) {
                 var date = ViewBag.StartDate + TimeSpan.FromDays(i);

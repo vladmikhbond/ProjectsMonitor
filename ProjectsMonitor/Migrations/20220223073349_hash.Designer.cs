@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectsMonitor.Data;
 
@@ -11,9 +12,10 @@ using ProjectsMonitor.Data;
 namespace ProjectsMonitor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220223073349_hash")]
+    partial class hash
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,7 +265,7 @@ namespace ProjectsMonitor.Migrations
 
                     b.HasKey("Tag", "UserName");
 
-                    b.ToTable("Hashs");
+                    b.ToTable("Hash");
                 });
 
             modelBuilder.Entity("ProjectsMonitor.Models.Student", b =>
